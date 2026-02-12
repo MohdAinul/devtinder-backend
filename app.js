@@ -37,3 +37,8 @@ connectDB().then(() => {
     console.log(error);
   }
 });
+app.get("/", (req, res) => {
+  res.send("DevTinder Backend Working 🚀");
+});
+
+
