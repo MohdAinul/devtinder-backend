@@ -79,17 +79,13 @@ userSchema.index({ firstName: 1, lastName: 1 });
 
 userSchema.methods.getjwt = async function () {
   const user = this;
-  const token = await jwt.sign({ _id: this._id }, "ainul786", {
+  const token = await jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
 
   return token;
 };
 
-// userSchema.methods.encryptPassword = async function (passwordInputByUser) {
-//     const passwordHash = await bcrypt.hash(passwordInputByUser, 10)
-//     return passwordHash
-// }
 
 userSchema.methods.validatePassword = async function (passwordInputByUser) {
   const user = this;
