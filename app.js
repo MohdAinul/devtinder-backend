@@ -6,6 +6,8 @@ const dotenv = require("dotenv");
 dotenv.config({});
 const cors = require("cors");
 const http = require("http");
+const uploadRouter = require("./src/routes/upload");
+app.use("/api", uploadRouter);
 
 app.use(
   cors({
