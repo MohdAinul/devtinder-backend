@@ -9,15 +9,13 @@ dotenv.config();
 
 const app = express();
 
-// ✅ 🔥 CORS FIRST (VERY IMPORTANT)
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "devtinder-frontend-nu.vercel.app"],
     credentials: true,
   }),
 );
 
-// ✅ 🔥 handle preflight (CRITICAL FIX)
 app.options("*", cors());
 
 app.use(express.json());
@@ -31,7 +29,6 @@ const requestRouter = require("./src/routes/request");
 const userRouter = require("./src/routes/user");
 const initializeSocket = require("./src/utils/socket");
 
-// ✅ after CORS
 app.use("/api", uploadRouter);
 app.use("/", authRouter);
 app.use("/", profileRouter);
